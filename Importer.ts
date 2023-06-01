@@ -3,6 +3,7 @@ import { Octokit } from "@octokit/rest";
 import * as GitHub from "@actions/github";
 import { google } from "googleapis"
 
+
 export class Importer {
 
     public static LOG_SPACING_SIZE = 2
@@ -23,6 +24,9 @@ export class Importer {
             }
             Core.info("Auth with GitHub Token...")
             const octokit = new Octokit()
+            const { createActionAuth } = require("@octokit/auth-action");
+            const auth = createActionAuth();
+            const authentication = await auth();
             Core.info("Done.")
             Core.endGroup()
 
