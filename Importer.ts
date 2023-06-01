@@ -36,11 +36,12 @@ export class Importer {
             var issuesPage
             do {
                 Core.info(`Getting data from Issues page ${page}...`)
-                issuesPage = await octokit.issues.listForRepo({
+                issuesPage = octokit.request('GET /repos/{owner}/{repo}/issues', {
                     owner: GitHub.context.repo.owner,
                     repo: GitHub.context.repo.repo,
-                    state: "all",
-                    // page
+                     headers: {
+                    'X-GitHub-Api-Version': '2022-11-28'
+                    }
                 });
                 Core.info(`There are ${issuesPage.data.length} Issues...`)
                 issuesData = issuesData.concat(issuesPage.data)
