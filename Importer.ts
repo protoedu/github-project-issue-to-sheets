@@ -26,19 +26,6 @@ export class Importer {
             Core.info("Done.")
             Core.endGroup()
             
-            // Octokit.js
-            // https://github.com/octokit/core.js#readme
-            const octokit = new Octokit({
-            auth: 'YOUR-TOKEN'
-            })
-
-await octokit.request('GET /repos/{owner}/{repo}/issues', {
-  owner: 'OWNER',
-  repo: 'REPO',
-  headers: {
-    'X-GitHub-Api-Version': '2022-11-28'
-  }
-})
 
             Core.startGroup("📑 Getting all Issues in repository...")
             var page = 1
