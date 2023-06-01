@@ -23,10 +23,13 @@ export class Importer {
                 throw new Error("🚨 Some Inputs missed. Please check project README.")
             }
             Core.info("Auth with GitHub Token...")
-            const octokit = new Octokit()
+            
             const { createActionAuth } = require("@octokit/auth-action");
             const auth = createActionAuth();
             const authentication = await auth();
+            const octokit = new Octokit({
+            auth: authentication
+            })
             Core.info("Done.")
             Core.endGroup()
 
